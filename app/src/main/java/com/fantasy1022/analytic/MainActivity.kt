@@ -3,27 +3,29 @@ package com.fantasy1022.analytic
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import com.google.android.gms.analytics.HitBuilders
-import com.google.android.gms.analytics.Tracker
+import com.crashlytics.android.Crashlytics
+import com.fantasy1022.analytic.analytics.Analytics
+import com.fantasy1022.analytic.analytics.Events
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     val TAG = javaClass.simpleName
 
-    lateinit var mTracker: Tracker
-
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
+                Analytics.instance.trackEvent(Events.openMainPage())
                 message.setText(R.string.title_home)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
+                Analytics.instance.trackEvent(Events.openDashBoard())
                 message.setText(R.string.title_dashboard)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
+                Analytics.instance.trackEvent(Events.openNotification())
                 message.setText(R.string.title_notifications)
                 return@OnNavigationItemSelectedListener true
             }
@@ -34,14 +36,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val application = application as AnalyticApplication
-        mTracker = application.getDefaultTracker()
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        crashBtn.setOnClickListener { Crashlytics.getInstance().crash() }
     }
 
     override fun onResume() {
         super.onResume()
-        mTracker.setScreenName(TAG)
-        mTracker.send( HitBuilders.ScreenViewBuilder().build())
     }
 }
