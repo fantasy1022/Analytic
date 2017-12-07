@@ -3,6 +3,7 @@ package com.fantasy1022.analytic.analytics
 import android.content.Context
 import com.fantasy1022.analytic.analytics.tracker.BaseTracker
 import com.fantasy1022.analytic.analytics.tracker.CrashlyticsTracker
+import com.fantasy1022.analytic.analytics.tracker.FirebaseGATracker
 import com.fantasy1022.analytic.analytics.tracker.GATracker
 
 
@@ -17,6 +18,7 @@ class Analytics private constructor() {
     fun init(context: Context, isDebug: Boolean) {
         trackers.add(GATracker(context, isDebug))
         trackers.add(CrashlyticsTracker(context, isDebug))
+        trackers.add(FirebaseGATracker(context, isDebug))
     }
 
     fun trackEvent(event: Event) {

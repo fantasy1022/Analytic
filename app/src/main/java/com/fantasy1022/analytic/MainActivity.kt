@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         crashBtn.setOnClickListener { Crashlytics.getInstance().crash() }
+        playBtn.setOnClickListener({ Analytics.instance.trackEvent(Events.clickPlayBtn()) })
     }
 
     override fun onResume() {
