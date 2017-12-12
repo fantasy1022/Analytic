@@ -1,6 +1,6 @@
 package com.fantasy1022.analytic.analytics.tracker
 
-import android.content.Context
+import android.app.Application
 import com.fantasy1022.analytic.R
 import com.fantasy1022.analytic.analytics.Event
 import com.fantasy1022.analytic.analytics.Event.Companion.TARGET_FLURRY
@@ -10,16 +10,17 @@ import com.flurry.android.FlurryAgent
 
 class FlurryTracker : BaseTracker<Event> {
 
-    constructor(context: Context, isDebug: Boolean) : super(context, isDebug)
+    constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
 
     override fun isOwnEvent(target: Long): Boolean {
         return (target and TARGET_FLURRY) === TARGET_FLURRY
     }
 
-    override fun setupTracker(context: Context, isDebug: Boolean) {
+    override fun setupTracker(context: Application, isDebug: Boolean) {
         FlurryAgent.Builder()
                 .withLogEnabled(true)
+                .withCaptureUncaughtExceptions(true)
                 .build(context, context.getString(R.string.FLURRY_API_KEY))
     }
 

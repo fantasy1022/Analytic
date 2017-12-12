@@ -1,10 +1,11 @@
 package com.fantasy1022.analytic.analytics.tracker
 
+import android.app.Application
 import android.content.Context
 import com.fantasy1022.analytic.analytics.Event
 
 
-abstract class BaseTracker<T>(val context: Context, val isDebug: Boolean) {
+abstract class BaseTracker<T>(val context: Application, val isDebug: Boolean) {
 
     init {
         setupTracker(context, isDebug)
@@ -20,7 +21,7 @@ abstract class BaseTracker<T>(val context: Context, val isDebug: Boolean) {
 
     protected abstract fun isOwnEvent(@Event.Companion.TrackerTarget target: Long): Boolean
 
-    protected abstract fun setupTracker(context: Context, isDebug: Boolean)
+    protected abstract fun setupTracker(context: Application, isDebug: Boolean)
 
     protected abstract fun acceptEvent(event: Event): Boolean
 

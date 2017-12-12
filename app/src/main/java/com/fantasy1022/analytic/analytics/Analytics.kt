@@ -1,6 +1,6 @@
 package com.fantasy1022.analytic.analytics
 
-import android.content.Context
+import android.app.Application
 import com.fantasy1022.analytic.analytics.tracker.*
 
 
@@ -12,11 +12,12 @@ class Analytics private constructor() {
 
     private val trackers = ArrayList<BaseTracker<Event>>()
 
-    fun init(context: Context, isDebug: Boolean) {
+    fun init(context: Application, isDebug: Boolean) {
         trackers.add(GATracker(context, isDebug))
         trackers.add(CrashlyticsTracker(context, isDebug))
         trackers.add(FirebaseGATracker(context, isDebug))
         trackers.add(FlurryTracker(context, isDebug))
+        trackers.add(AppCenterTracker(context, isDebug))
     }
 
     fun trackEvent(event: Event) {

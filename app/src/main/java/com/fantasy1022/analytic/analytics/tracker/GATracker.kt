@@ -1,6 +1,6 @@
 package com.fantasy1022.analytic.analytics.tracker
 
-import android.content.Context
+import android.app.Application
 import com.fantasy1022.analytic.R
 import com.fantasy1022.analytic.analytics.Event
 import com.fantasy1022.analytic.analytics.Event.Companion.TARGET_GA
@@ -14,13 +14,13 @@ class GATracker : BaseTracker<Event> {
 
     private var tracker: Tracker? = null
 
-    constructor(context: Context, isDebug: Boolean) : super(context, isDebug)
+    constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
     override fun isOwnEvent(target: Long): Boolean {
         return (target and TARGET_GA) === TARGET_GA
     }
 
-    override fun setupTracker(context: Context, isDebug: Boolean) {
+    override fun setupTracker(context: Application, isDebug: Boolean) {
         if (tracker == null) {
             val analytics = GoogleAnalytics.getInstance(context)
             tracker = analytics.newTracker(R.xml.global_tracker)

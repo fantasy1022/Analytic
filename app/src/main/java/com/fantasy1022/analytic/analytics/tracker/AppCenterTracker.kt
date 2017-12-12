@@ -1,27 +1,32 @@
 package com.fantasy1022.analytic.analytics.tracker
 
 import android.app.Application
-import com.crashlytics.android.Crashlytics
+import com.fantasy1022.analytic.R
 import com.fantasy1022.analytic.analytics.Event
-import com.fantasy1022.analytic.analytics.Event.Companion.TARGET_CRASHLYTICS
 import com.fantasy1022.analytic.analytics.ScreenEvent
-import io.fabric.sdk.android.Fabric
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 
 
-class CrashlyticsTracker : BaseTracker<Event> {
+class AppCenterTracker : BaseTracker<Event> {
 
     constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
+
     override fun isOwnEvent(target: Long): Boolean {
-        return (target and TARGET_CRASHLYTICS) === TARGET_CRASHLYTICS
+        return (target and Event.TARGET_APP_CENTER) === Event.TARGET_APP_CENTER
     }
 
+
     override fun setupTracker(context: Application, isDebug: Boolean) {
-        Fabric.with(context, Crashlytics())
+        AppCenter.start(context, context.getString(R.string.APP_CENTER_API_KEY),
+                Analytics::class.java, Crashes::class.java)
+
     }
 
     override fun acceptEvent(event: Event): Boolean {
-        return Fabric.isInitialized() && ((event is ScreenEvent) || !event.params.isEmpty)
+        return (event is ScreenEvent) || !event.params.isEmpty
     }
 
     override fun transformEvent(event: Event): Event {
@@ -30,10 +35,9 @@ class CrashlyticsTracker : BaseTracker<Event> {
 
     override fun postEvent(transformedEvent: Event) {
         if (transformedEvent is ScreenEvent) {
-            Crashlytics.log(transformedEvent.screenName)
+            Analytics.trackEvent(transformedEvent.screenName)
         } else {
-            Crashlytics.log(transformedEvent.params[Event.LABEL])
+            Analytics.trackEvent(transformedEvent.params[Event.LABEL])
         }
     }
-
 }

@@ -12,7 +12,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary= true
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -31,6 +31,8 @@ dependencies {
     implementation 'com.android.support:support-vector-drawable:26.1.0'
     implementation 'com.google.android.gms:play-services-analytics:11.4.2'
     implementation 'com.flurry.android:analytics:8.2.0'
+    implementation "com.microsoft.appcenter:appcenter-analytics:1.0.0"
+    implementation "com.microsoft.appcenter:appcenter-crashes:1.0.0"
 
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
