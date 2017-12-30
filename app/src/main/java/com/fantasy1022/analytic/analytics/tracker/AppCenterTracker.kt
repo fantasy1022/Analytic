@@ -6,7 +6,6 @@ import com.fantasy1022.analytic.analytics.Event
 import com.fantasy1022.analytic.analytics.ScreenEvent
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
-import com.microsoft.appcenter.crashes.Crashes
 
 
 class AppCenterTracker : BaseTracker<Event> {
@@ -21,7 +20,7 @@ class AppCenterTracker : BaseTracker<Event> {
 
     override fun setupTracker(context: Application, isDebug: Boolean) {
         AppCenter.start(context, context.getString(R.string.APP_CENTER_API_KEY),
-                Analytics::class.java, Crashes::class.java)
+                Analytics::class.java)
 
     }
 

@@ -18,6 +18,7 @@ class Analytics private constructor() {
         trackers.add(FirebaseGATracker(context, isDebug))
         trackers.add(FlurryTracker(context, isDebug))
         trackers.add(AppCenterTracker(context, isDebug))
+        trackers.add(FbTracker(context, isDebug))
     }
 
     fun trackEvent(event: Event) {

@@ -24,7 +24,7 @@ open class Event(val screenName: String="",
         val ACTION_PLAY = "Play"
 
         @IntDef(TARGET_GA, TARGET_CRASHLYTICS, TARGET_FIREBASE_GA, TARGET_FLURRY, TARGET_APP_CENTER,
-                TARGET_GA_CRASHLYTICS, TARGET_ALL)
+                TARGET_FB_ANALYTIC, TARGET_GA_CRASHLYTICS, TARGET_ALL)
         @Retention(AnnotationRetention.SOURCE)
         annotation class TrackerTarget
 
@@ -33,8 +33,9 @@ open class Event(val screenName: String="",
         const val TARGET_FIREBASE_GA = 0b00000100L
         const val TARGET_FLURRY = 0b00001000L
         const val TARGET_APP_CENTER = 0b00010000L
+        const val TARGET_FB_ANALYTIC = 0b00100000L
         const val TARGET_GA_CRASHLYTICS = TARGET_GA or TARGET_CRASHLYTICS
         const val TARGET_ALL = TARGET_GA or TARGET_CRASHLYTICS or TARGET_FIREBASE_GA or
-                TARGET_FLURRY or TARGET_APP_CENTER
+                TARGET_FLURRY or TARGET_APP_CENTER or TARGET_FB_ANALYTIC
     }
 }
