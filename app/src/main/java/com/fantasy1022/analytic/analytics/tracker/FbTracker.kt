@@ -21,8 +21,10 @@ class FbTracker : BaseTracker<Event> {
     }
 
     override fun setupTracker(context: Application, isDebug: Boolean) {
-        FacebookSdk.setIsDebugEnabled(true)
-        FacebookSdk.addLoggingBehavior(LoggingBehavior.APP_EVENTS)
+        if (isDebug) {
+            FacebookSdk.setIsDebugEnabled(true)
+            FacebookSdk.addLoggingBehavior(LoggingBehavior.APP_EVENTS)
+        }
         fbAnalytics = AppEventsLogger.newLogger(context)
     }
 

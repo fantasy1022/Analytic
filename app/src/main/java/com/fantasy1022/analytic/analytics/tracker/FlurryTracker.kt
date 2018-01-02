@@ -18,7 +18,7 @@ class FlurryTracker : BaseTracker<Event> {
 
     override fun setupTracker(context: Application, isDebug: Boolean) {
         FlurryAgent.Builder()
-                .withLogEnabled(true)
+                .withLogEnabled(isDebug)
                 .withCaptureUncaughtExceptions(true)
                 .build(context, context.getString(R.string.FLURRY_API_KEY))
     }

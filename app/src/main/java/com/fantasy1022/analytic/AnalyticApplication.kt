@@ -7,7 +7,6 @@ class AnalyticApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        //TODO:Check isDebug parameter
-        Analytics.instance.init(this, false)
+        Analytics.instance.init(this, BuildConfig.DEBUG)
     }
 }
