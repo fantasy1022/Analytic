@@ -24,7 +24,15 @@ class Events {
             params.put(Event.CATEGORY, Event.CATEGORY_HOME)
             params.put(Event.ACTION, Event.ACTION_PLAY)
             params.put(Event.LABEL, "song")
-            return Event("", TARGET_ALL, params)
+            return Event(params, TARGET_ALL)
+        }
+
+        fun clickBrowseBtn(): Event {
+            val params: ArrayMap<String, String> = ArrayMap()
+            params.put(Event.CATEGORY, Event.CATEGORY_HOME)
+            params.put(Event.ACTION, Event.ACTION_PLAY)
+            params.put(Event.LABEL, "song")
+            return Event(params, TARGET_ALL)
         }
 
     }

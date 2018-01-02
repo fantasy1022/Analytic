@@ -1,7 +1,6 @@
 package com.fantasy1022.analytic.analytics.tracker
 
 import android.app.Application
-import android.content.Context
 import com.fantasy1022.analytic.analytics.Event
 
 

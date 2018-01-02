@@ -10,7 +10,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 
 class FirebaseGATracker : BaseTracker<Event> {
 
-    private var mFirebaseAnalytics: FirebaseAnalytics? = null
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
@@ -19,7 +19,7 @@ class FirebaseGATracker : BaseTracker<Event> {
     }
 
     override fun setupTracker(context: Application, isDebug: Boolean) {
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context)
+        firebaseAnalytics = FirebaseAnalytics.getInstance(context)
     }
 
     override fun acceptEvent(event: Event): Boolean {
@@ -31,10 +31,10 @@ class FirebaseGATracker : BaseTracker<Event> {
     }
 
     override fun postEvent(transformedEvent: Event) {
-        if(transformedEvent is ScreenEvent){
-            transformedEvent.screenName?.let{mFirebaseAnalytics?.logEvent(transformedEvent.screenName,null)}
-        }else{
-            mFirebaseAnalytics?.logEvent(transformedEvent.params[Event.LABEL]!!, getEventMap(transformedEvent))
+        if (transformedEvent is ScreenEvent) {
+            firebaseAnalytics.logEvent(transformedEvent.screenName, null)
+        } else {
+            firebaseAnalytics.logEvent(transformedEvent.screenName, getEventMap(transformedEvent))
         }
     }
 

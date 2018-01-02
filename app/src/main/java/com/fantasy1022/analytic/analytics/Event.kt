@@ -4,11 +4,11 @@ import android.support.annotation.IntDef
 import android.support.v4.util.ArrayMap
 
 
-open class Event(val screenName: String="",
-                 @TrackerTarget val target: Long = 0L,
-                 val params: ArrayMap<String, String> = ArrayMap()
-                 ) {
+open class Event(val screenName: String = "",
+                 @TrackerTarget val target: Long = TARGET_ALL,
+                 val params: ArrayMap<String, String> = ArrayMap()) {
 
+    constructor(params: ArrayMap<String, String>, target: Long) : this("", target, params)
 
     companion object {
 

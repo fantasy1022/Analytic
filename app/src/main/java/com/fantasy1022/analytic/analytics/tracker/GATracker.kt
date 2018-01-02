@@ -12,7 +12,7 @@ import com.google.android.gms.analytics.Tracker
 
 class GATracker : BaseTracker<Event> {
 
-    private var tracker: Tracker? = null
+    private lateinit var tracker: Tracker
 
     constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
@@ -21,10 +21,8 @@ class GATracker : BaseTracker<Event> {
     }
 
     override fun setupTracker(context: Application, isDebug: Boolean) {
-        if (tracker == null) {
-            val analytics = GoogleAnalytics.getInstance(context)
-            tracker = analytics.newTracker(R.xml.global_tracker)
-        }
+        val analytics = GoogleAnalytics.getInstance(context)
+        tracker = analytics.newTracker(R.xml.global_tracker)
 //        tracker = if (isDebug) analytics.newTracker(DEBUG_TOKEN) else analytics.newTracker(RELEASE_TOKEN)
     }
 
@@ -38,10 +36,10 @@ class GATracker : BaseTracker<Event> {
 
     override fun postEvent(transformedEvent: Event) {
         if (transformedEvent is ScreenEvent) {
-            tracker?.setScreenName(transformedEvent.screenName)
-            tracker?.send(HitBuilders.ScreenViewBuilder().build())
+            tracker.setScreenName(transformedEvent.screenName)
+            tracker.send(HitBuilders.ScreenViewBuilder().build())
         } else {
-            tracker?.send(getEventMap(transformedEvent))
+            tracker.send(getEventMap(transformedEvent))
         }
     }
 
@@ -53,6 +51,5 @@ class GATracker : BaseTracker<Event> {
 
         return eventBuilder.build()
     }
-
 
 }
