@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         crashBtn.setOnClickListener { Crashlytics.getInstance().crash() }
         playBtn.setOnClickListener({ Analytics.instance.trackEvent(Events.clickPlayBtn()) })
+        browseBtn.setOnClickListener({Analytics.instance.trackEvent(Events.clickBrowseBtn())})
     }
 
     override fun onResume() {

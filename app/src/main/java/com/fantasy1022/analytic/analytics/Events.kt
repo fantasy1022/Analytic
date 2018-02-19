@@ -31,8 +31,8 @@ class Events {
         fun clickBrowseBtn(): Event {
             val params: ArrayMap<String, String> = ArrayMap()
             params.put(Event.CATEGORY, Event.CATEGORY_HOME)
-            params.put(Event.ACTION, Event.ACTION_PLAY)
-            params.put(Event.LABEL, "song")
+            params.put(Event.ACTION, Event.ACTION_BROWSE)
+            params.put(Event.LABEL, "content")
             return Event(params, TARGET_GA_CRASHLYTICS)
         }
 

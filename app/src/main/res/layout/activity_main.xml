@@ -32,6 +32,13 @@
         android:text="Play"
         app:layout_constraintLeft_toRightOf="@id/crashBtn" />
 
+    <Button
+        android:id="@+id/browseBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Browse"
+        app:layout_constraintLeft_toRightOf="@id/playBtn" />
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="0dp"
