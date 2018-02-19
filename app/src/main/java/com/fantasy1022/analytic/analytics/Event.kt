@@ -8,7 +8,7 @@ open class Event(val screenName: String = "",
                  @TrackerTarget val target: Long = TARGET_ALL,
                  val params: ArrayMap<String, String> = ArrayMap()) {
 
-    constructor(params: ArrayMap<String, String>, @TrackerTarget target: Long) : this("", target, params)
+    constructor(params: ArrayMap<String, String>, target: Long) : this("", target, params)
 
     companion object {
 
