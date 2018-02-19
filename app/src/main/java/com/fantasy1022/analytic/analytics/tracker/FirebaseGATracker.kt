@@ -14,8 +14,8 @@ class FirebaseGATracker : BaseTracker<Event> {
 
     constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
-    override fun isOwnEvent(target: Long): Boolean {
-        return (target and TARGET_FIREBASE_GA) === TARGET_FIREBASE_GA
+    override fun getTrackerTarget(): Long {
+        return TARGET_FIREBASE_GA;
     }
 
     override fun setupTracker(context: Application, isDebug: Boolean) {

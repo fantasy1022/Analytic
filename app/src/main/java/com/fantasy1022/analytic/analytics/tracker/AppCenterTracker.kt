@@ -3,6 +3,7 @@ package com.fantasy1022.analytic.analytics.tracker
 import android.app.Application
 import com.fantasy1022.analytic.R
 import com.fantasy1022.analytic.analytics.Event
+import com.fantasy1022.analytic.analytics.Event.Companion.TARGET_APP_CENTER
 import com.fantasy1022.analytic.analytics.ScreenEvent
 import com.microsoft.appcenter.AppCenter
 import com.microsoft.appcenter.analytics.Analytics
@@ -12,16 +13,13 @@ class AppCenterTracker : BaseTracker<Event> {
 
     constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
-
-    override fun isOwnEvent(target: Long): Boolean {
-        return (target and Event.TARGET_APP_CENTER) === Event.TARGET_APP_CENTER
+    override fun getTrackerTarget(): Long {
+        return TARGET_APP_CENTER
     }
-
 
     override fun setupTracker(context: Application, isDebug: Boolean) {
         AppCenter.start(context, context.getString(R.string.APP_CENTER_API_KEY),
                 Analytics::class.java)
-
     }
 
     override fun acceptEvent(event: Event): Boolean {

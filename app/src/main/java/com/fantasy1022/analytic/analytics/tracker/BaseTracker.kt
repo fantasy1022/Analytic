@@ -10,7 +10,6 @@ abstract class BaseTracker<T>(val context: Application, val isDebug: Boolean) {
         setupTracker(context, isDebug)
     }
 
-
     fun trackEvent(event: Event) {
         if (isOwnEvent(event.target) && acceptEvent(event)) {
             val transformedEvent = transformEvent(event)
@@ -18,7 +17,9 @@ abstract class BaseTracker<T>(val context: Application, val isDebug: Boolean) {
         }
     }
 
-    protected abstract fun isOwnEvent(@Event.Companion.TrackerTarget target: Long): Boolean
+    private fun isOwnEvent(@Event.Companion.TrackerTarget target: Long): Boolean{
+        return (target and getTrackerTarget()) === getTrackerTarget()
+    }
 
     protected abstract fun setupTracker(context: Application, isDebug: Boolean)
 
@@ -27,4 +28,6 @@ abstract class BaseTracker<T>(val context: Application, val isDebug: Boolean) {
     protected abstract fun transformEvent(event: Event): T
 
     protected abstract fun postEvent(transformedEvent: T)
+
+    protected abstract fun getTrackerTarget():Long
 }

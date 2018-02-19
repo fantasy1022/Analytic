@@ -12,8 +12,8 @@ class FlurryTracker : BaseTracker<Event> {
 
     constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
-    override fun isOwnEvent(target: Long): Boolean {
-        return (target and TARGET_FLURRY) === TARGET_FLURRY
+    override fun getTrackerTarget(): Long {
+        return TARGET_FLURRY
     }
 
     override fun setupTracker(context: Application, isDebug: Boolean) {

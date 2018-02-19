@@ -2,6 +2,7 @@ package com.fantasy1022.analytic.analytics
 
 import android.support.v4.util.ArrayMap
 import com.fantasy1022.analytic.analytics.Event.Companion.TARGET_ALL
+import com.fantasy1022.analytic.analytics.Event.Companion.TARGET_GA_CRASHLYTICS
 
 class Events {
 
@@ -32,7 +33,7 @@ class Events {
             params.put(Event.CATEGORY, Event.CATEGORY_HOME)
             params.put(Event.ACTION, Event.ACTION_PLAY)
             params.put(Event.LABEL, "song")
-            return Event(params, TARGET_ALL)
+            return Event(params, TARGET_GA_CRASHLYTICS)
         }
 
     }

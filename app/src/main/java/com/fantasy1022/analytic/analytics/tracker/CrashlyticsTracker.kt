@@ -12,8 +12,8 @@ class CrashlyticsTracker : BaseTracker<Event> {
 
     constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
-    override fun isOwnEvent(target: Long): Boolean {
-        return (target and TARGET_CRASHLYTICS) === TARGET_CRASHLYTICS
+    override fun getTrackerTarget(): Long {
+        return TARGET_CRASHLYTICS
     }
 
     override fun setupTracker(context: Application, isDebug: Boolean) {

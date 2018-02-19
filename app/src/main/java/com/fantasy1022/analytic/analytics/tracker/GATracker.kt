@@ -16,8 +16,8 @@ class GATracker : BaseTracker<Event> {
 
     constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
-    override fun isOwnEvent(target: Long): Boolean {
-        return (target and TARGET_GA) === TARGET_GA
+    override fun getTrackerTarget(): Long {
+        return TARGET_GA
     }
 
     override fun setupTracker(context: Application, isDebug: Boolean) {

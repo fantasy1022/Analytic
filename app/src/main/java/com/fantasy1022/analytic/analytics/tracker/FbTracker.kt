@@ -6,7 +6,7 @@ import com.facebook.FacebookSdk
 import com.facebook.LoggingBehavior
 import com.facebook.appevents.AppEventsLogger
 import com.fantasy1022.analytic.analytics.Event
-import com.fantasy1022.analytic.analytics.Event.Companion.TrackerTarget
+import com.fantasy1022.analytic.analytics.Event.Companion.TARGET_FB_ANALYTIC
 import com.fantasy1022.analytic.analytics.ScreenEvent
 
 
@@ -16,8 +16,8 @@ class FbTracker : BaseTracker<Event> {
 
     constructor(context: Application, isDebug: Boolean) : super(context, isDebug)
 
-    override fun isOwnEvent(@TrackerTarget target: Long): Boolean {
-        return (target and Event.TARGET_FB_ANALYTIC) === Event.TARGET_FB_ANALYTIC
+    override fun getTrackerTarget(): Long {
+        return TARGET_FB_ANALYTIC
     }
 
     override fun setupTracker(context: Application, isDebug: Boolean) {
