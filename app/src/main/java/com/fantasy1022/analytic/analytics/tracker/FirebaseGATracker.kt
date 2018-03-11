@@ -34,7 +34,7 @@ class FirebaseGATracker : BaseTracker<Event> {
         if (transformedEvent is ScreenEvent) {
             firebaseAnalytics.logEvent(transformedEvent.screenName, null)
         } else {
-            firebaseAnalytics.logEvent(transformedEvent.screenName, getEventMap(transformedEvent))
+            firebaseAnalytics.logEvent(transformedEvent.params[Event.ACTION]!!, getEventMap(transformedEvent))
         }
     }
 

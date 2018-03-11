@@ -14,7 +14,7 @@ class Analytics private constructor() {
 
     fun init(context: Application, isDebug: Boolean) {
         trackers.add(GATracker(context, isDebug))
-        trackers.add(CrashlyticsTracker(context, isDebug))
+//        trackers.add(CrashlyticsTracker(context, isDebug))//Use Firebase GA new feature.
         trackers.add(FirebaseGATracker(context, isDebug))
         trackers.add(FlurryTracker(context, isDebug))
         trackers.add(AppCenterTracker(context, isDebug))

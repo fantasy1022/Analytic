@@ -35,7 +35,7 @@ class Events {
             params.put(Event.CATEGORY, Event.CATEGORY_HOME)
             params.put(Event.ACTION, Event.ACTION_BROWSE)
             params.put(Event.LABEL, "content")
-            return Event(params, TARGET_GA_CRASHLYTICS)
+            return Event(params, TARGET_FLURRY)
         }
 
     }

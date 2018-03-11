@@ -1,14 +1,14 @@
 package com.fantasy1022.analytic
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
 import com.crashlytics.android.Crashlytics
 import com.fantasy1022.analytic.analytics.Analytics
 import com.fantasy1022.analytic.analytics.Events
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     val TAG = javaClass.simpleName
 
@@ -39,10 +39,8 @@ class MainActivity : AppCompatActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         crashBtn.setOnClickListener { Crashlytics.getInstance().crash() }
         playBtn.setOnClickListener({ Analytics.instance.trackEvent(Events.clickPlayBtn()) })
-        browseBtn.setOnClickListener({Analytics.instance.trackEvent(Events.clickBrowseBtn())})
+        browseBtn.setOnClickListener({ Analytics.instance.trackEvent(Events.clickBrowseBtn()) })
+        openActivityBtn.setOnClickListener({ startActivity(Intent(this, SecondActivity::class.java)) })
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 }
